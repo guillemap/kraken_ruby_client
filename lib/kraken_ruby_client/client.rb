@@ -489,6 +489,63 @@ module Kraken
       post_private 'DepositStatus', opts
     end
 
+    # Get withdrawal methods (POST)
+    # Input:
+    #   aclass = asset class (optional):
+    #     currency (default)
+    #   asset = asset being withdrawn (optional)
+    #   network = withdrawal network name (optional)
+    #
+    # Result:
+    # {
+    #   "error": [],
+    #   "result": [
+    #     {
+    #       "asset": "XXBT",
+    #       "method": "Bitcoin",
+    #       "network": "Bitcoin",
+    #       "minimum": "0.0004"
+    #     },
+    #     {
+    #       "asset": "XXBT",
+    #       "method": "Bitcoin Lightning",
+    #       "network": "Lightning",
+    #       "minimum": "0.00001"
+    #     }
+    #   ]
+    # }
+    #
+    # Examples:
+    #
+    # client.withdrawal_methods(asset: :xxbt)
+    #
+    def withdrawal_methods(opts = {})
+      post_private 'WithdrawMethods', opts
+    end
+
+    # Get withdrawal addresses (POST)
+    # Input:
+    #   aclass = asset class (optional):
+    #     currency (default)
+    #   asset = asset being withdrawn
+    #   method = name of the withdrawal method
+    #   key = Find address for by withdrawal key name, as set up on your account
+    #   verified = Filter by verification status of the withdrawal address.
+    #              Withdrawal addresses successfully completing email confirmation will have a verification status of true.
+    #
+    # Result: associative array of withdrawal addresses:
+    #   address = withdrawal address
+    #   expiretm = expiration time in unix timestamp, or 0 if not expiring
+    #   new = whether or not address has ever been used
+    #
+    # Examples:
+    #
+    # client.withdrawal_addresses(asset: 'xxbt', method: 'Bitcoin', new: true)
+    #
+    def withdrawal_addresses(opts = {})
+      post_private 'WithdrawAddresses', opts
+    end
+
     # Withdraw info (POST)
     #
     # Example:
