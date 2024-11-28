@@ -519,7 +519,7 @@ module Kraken
     #
     # client.withdrawal_methods(asset: :xxbt)
     #
-    def withdrawal_methods(opts = {})
+    def withdraw_methods(opts = {})
       post_private 'WithdrawMethods', opts
     end
 
@@ -542,7 +542,7 @@ module Kraken
     #
     # client.withdrawal_addresses(asset: 'xxbt', method: 'Bitcoin', new: true)
     #
-    def withdrawal_addresses(opts = {})
+    def withdraw_addresses(opts = {})
       post_private 'WithdrawAddresses', opts
     end
 
